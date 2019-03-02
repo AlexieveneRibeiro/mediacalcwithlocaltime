@@ -1,0 +1,46 @@
+#include<stdio.h>		//incluindo biblioteca padrC#o 1
+#include<stdlib.h>		//incluindo biblioteca padrC#o 2
+#include<time.h>
+float
+main (void)
+{
+ FILE *mediaarq;
+  float a, b, c, d;
+  char nomealuno[20];		//define a quantidade de letras para o nomedoaluno
+   struct tm *data_hora_atual;
+ mediaarq=fopen("medialuno.txt", "aluno");
+ time_t segundos;
+ time(&segundos);
+ data_hora_atual = localtime(&segundos); 
+printf("______________________________________________________________________\n");
+printf(">>>>>>>>>>>>>>>>>>>>>Calculo de médias<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n");
+printf(">>>>>>>Hoje é: 0%d", data_hora_atual->tm_mday);
+printf("/0%d/", data_hora_atual->tm_mon+1);
+printf("%d<<<<<<<<<\n", data_hora_atual->tm_year+1900);
+  printf ("Escreva o nome do aluno: ");	//solicita o nome
+  gets (nomealuno);		//campo de entrada para o nome, gets armazena os espaC'os que vocC* insere no nome
+  printf ("Digite a nota 1 : ");	//entrada de nota primC!ria que vale por a
+  scanf ("%f", &a);
+  printf ("Digite a nota 2 :  ");	//entrada de nota secundC!ria que vale por b
+  scanf ("%f", &b);
+
+  printf ("Digite o peso da nota 1 : ");	//entrada de peso 1 que vale por c
+  scanf ("%f", &c);
+
+  printf ("Digite o peso da nota 2 :  ");	//entrada de peso 2 que vale por d
+  scanf ("%f", &d);
+
+
+  float media;
+  media = (a * c + b * d) / (c + d);
+  printf ("A média de %f e %f é %.1f\n", a, b, media);	//saida da mC)dia
+  if (media < 4.75)
+    printf ("%s, reprovado por média", nomealuno);	//teste de lC3gica para saber se o aluno reprovou
+  else if (media >= 4.75)
+    printf ("%s, aprovado por média", nomealuno);	//teste de lC3gica para saber se o aluno estC! aprovado
+ fprintf (mediaarq,"%s tem a média %1f\n",nomealuno, media);
+ fclose (mediaarq);
+  return 0;
+ 
+}
+
